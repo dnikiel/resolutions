@@ -1,0 +1,48 @@
+<head>
+  <title>Resolutions</title>
+</head>
+
+<body>
+  <div class='container'>
+
+    <header>
+      <h1>
+      {{#if currentUser}}
+        Private Resolutions:
+      {{else}}
+        Public Resolutions:
+      {{/if}}
+      </h1>
+    </header>
+
+    {{#if currentUser}}
+      <p>{{> loginButtons}}</p>
+      <label class='hide-finished'>
+        <input type='checkbox' checked='{{hideFinished}}'>
+        Hide finished resolutions
+      </label>
+    {{else}}
+      <p>You are not logged in but you can still manage public resolutions.<br />
+      Sign in to create private resolutions. {{> loginButtons}}</p>
+    {{/if}}
+
+
+    <form class='new-resolution'>
+      <input type='text' name='title' placeholder='New resolution'>
+      <input type='submit' value='Submit' class="button-primary">
+    </form>
+
+    <ol>
+      {{#each resolutions}}
+        {{> resolution}}
+      {{/each}}
+    </ol>
+
+  </div>
+</body>
+
+<template name='resolution'>
+  <li class='{{#if checked}}checked{{/if}}'>
+    <input type='checkbox' checked='{{checked}}' class='toggle-checked'> {{title}}, created at: {{createdAt}} <button class='delete'>Delete</button>
+  </li>
+</template>

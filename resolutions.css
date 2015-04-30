@@ -1,0 +1,6 @@
+/* CSS declarations go here */
+
+.checked {
+  text-decoration: line-through;
+  color: gray;
+}
